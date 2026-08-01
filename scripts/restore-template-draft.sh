@@ -47,4 +47,11 @@ variables="$(jq -nc --argjson draft "${draft}" --argjson graph "${graph}" \
 request="$(jq -nc --argjson variables "${variables}" --arg query 'mutation UpdateDraft($id: String!, $input: TemplateUpsertConfigInput!) { templateUpsertConfig(id: $id, input: $input) { id code } }' '{query:$query,variables:$variables}')"
 response="$(curl --compressed --fail --silent --show-error https://backboard.railway.com/graphql/internal --header "Authorization: Bearer ${railway_access_token}" --header 'Content-Type: application/json' --data-binary "${request}")"
 jq -e '.data.templateUpsertConfig.id != null and ((.errors // []) | length == 0)' <<<"${response}" >/dev/null
+
+settings_request="$(jq -nc --arg id "${template_id}" --arg workspaceId "${workspace_id}" --arg query '
+  mutation RenameDraft($id: String!, $input: TemplateUpsertSettingsInput!) {
+    templateUpsertSettings(id: $id, input: $input) { id name }
+  }' '{query:$query,variables:{id:$id,input:{name:"Aegra agent backend",workspaceId:$workspaceId}}}')"
+settings_response="$(curl --compressed --fail --silent --show-error https://backboard.railway.com/graphql/internal --header "Authorization: Bearer ${railway_access_token}" --header 'Content-Type: application/json' --data-binary "${settings_request}")"
+jq -e '.data.templateUpsertSettings.name == "Aegra agent backend" and ((.errors // []) | length == 0)' <<<"${settings_response}" >/dev/null
 echo "Restored Aegra template ${template_id} source, pins, defaults, descriptions, volumes, and networking."

@@ -17,7 +17,9 @@ Railway supplies the public domain, private service discovery, generated secrets
 - Test streaming, cron, store, and human-in-the-loop integrations on infrastructure you control.
 - Start from the included key-protected graph and replace it with an application-specific agent.
 
-## Dependencies
+## Dependencies for Aegra
+
+### Deployment Dependencies
 
 - Aegra CLI and API `0.9.24`, installed from hash-locked official PyPI artifacts
 - pgvector on PostgreSQL 18 with a persistent volume

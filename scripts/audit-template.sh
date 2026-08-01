@@ -29,7 +29,12 @@ for service_name in "Aegra" "Aegra PostgreSQL" "Aegra Redis"; do
   [[ "$(jq -r '.deploy.healthcheckPath // ""' <<<"${actual}")" == "$(jq -r '.deploy.healthcheckPath // ""' <<<"${desired}")" ]] || failures=$((failures + 1))
   while IFS= read -r variable; do
     key="$(jq -r '.key' <<<"${variable}")"; expected="$(jq -r '.value' <<<"${variable}")"
-    [[ "$(jq -r --arg key "${key}" '.variables[$key].defaultValue // "__MISSING__"' <<<"${actual}")" == "${expected:-__MISSING__}" ]] || failures=$((failures + 1))
+    value="$(jq -r --arg key "${key}" '.variables[$key].defaultValue // "__MISSING__"' <<<"${actual}")"
+    if [[ -z "${expected}" ]]; then
+      [[ "${value}" == "__MISSING__" || -z "${value}" ]] || failures=$((failures + 1))
+    else
+      [[ "${value}" == "${expected}" ]] || failures=$((failures + 1))
+    fi
     [[ "$(jq -r --arg key "${key}" '.variables[$key].isOptional // false' <<<"${actual}")" == "false" ]] || failures=$((failures + 1))
   done < <(jq -c --arg service "${service_name}" '.[$service] | to_entries[]' "${template_root}/template-defaults.json")
 done

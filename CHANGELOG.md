@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.1] - 2026-08-01
+
+- Corrected headless draft restoration to update the marketplace display name through Composer settings.
+- Added the required marketplace dependency headings and a compliant publish description.
+
 ## [1.0.0] - 2026-08-01
 
 - Initial Railway release of Aegra 0.9.24 with authenticated Agent Protocol access.
