@@ -1,6 +1,6 @@
 # Publishing Aegra agent backend
 
-The current template release is `v1.0.3`. The private authoring source is `aegra-agent-backend` in this repository; Railway builds the public `tech-progress/railway-template-aegra` mirror at `release-v1`. Run `./scripts/check-standalone.sh` before each release.
+The current template release is `v1.0.4`. The private authoring source is `aegra-agent-backend` in this repository; Railway builds the public `tech-progress/railway-template-aegra` mirror at `release-v1`. Run `./scripts/check-standalone.sh` before each release.
 
 Run `bun install --frozen-lockfile`, `./scripts/verify.sh`, clean-volume Compose startup, the authenticated smoke, initialized restart, and the forced mid-run restart workflow. Then deploy `.railway/railway.ts` to a disposable source project with fixed temporary secrets, create the Aegra public domain, and confirm one running and zero crashed replicas per service.
 
@@ -14,4 +14,4 @@ railway templates publish TEMPLATE_ID \
   --json
 ```
 
-Run `./scripts/audit-template.sh TEMPLATE_ID PUBLISHED`, delete all disposable Railway projects and local Compose volumes, update findings and progress, tag this repository as `aegra-agent-backend-v1.0.3`, and tag the public mirror as `v1.0.3` with `release-v1` at the same commit.
+Run `./scripts/audit-template.sh TEMPLATE_ID PUBLISHED`, delete all disposable Railway projects and local Compose volumes, update findings and progress, tag this repository as `aegra-agent-backend-v1.0.4`, and tag the public mirror as `v1.0.4` with `release-v1` at the same commit.

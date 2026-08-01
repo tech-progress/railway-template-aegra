@@ -24,9 +24,13 @@ for service_name in "Aegra" "Aegra PostgreSQL" "Aegra Redis"; do
     for field in branch rootDirectory; do
       [[ "$(jq -r --arg field "${field}" '.source[$field]' <<<"${actual}")" == "$(jq -r --arg field "${field}" '.source[$field]' <<<"${desired}")" ]] || failures=$((failures + 1))
     done
-    [[ "$(jq -r '.build.dockerfilePath' <<<"${actual}")" == "Dockerfile" ]] || failures=$((failures + 1))
+    for field in builder dockerfilePath; do
+      [[ "$(jq -r --arg field "${field}" '.build[$field]' <<<"${actual}")" == "$(jq -r --arg field "${field}" '.build[$field]' <<<"${desired}")" ]] || failures=$((failures + 1))
+    done
   fi
-  [[ "$(jq -r '.deploy.healthcheckPath // ""' <<<"${actual}")" == "$(jq -r '.deploy.healthcheckPath // ""' <<<"${desired}")" ]] || failures=$((failures + 1))
+  for field in startCommand healthcheckPath healthcheckTimeout; do
+    [[ "$(jq -r --arg field "${field}" '.deploy[$field] // ""' <<<"${actual}")" == "$(jq -r --arg field "${field}" '.deploy[$field] // ""' <<<"${desired}")" ]] || failures=$((failures + 1))
+  done
   while IFS= read -r variable; do
     key="$(jq -r '.key' <<<"${variable}")"; expected="$(jq -r '.value' <<<"${variable}")"
     value="$(jq -r --arg key "${key}" '.variables[$key].defaultValue // "__MISSING__"' <<<"${actual}")"

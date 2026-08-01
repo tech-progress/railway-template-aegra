@@ -21,6 +21,11 @@ grep -Eq "^## \[${version//./\\.}\] - [0-9]{4}-[0-9]{2}-[0-9]{2}$" "${template_r
 for file in README.md PUBLISHING.md; do
   grep -Fq "current template release is \`v${version}\`" "${template_root}/${file}"
 done
+for heading in '# Deploy and Host' '## About Hosting' '## Why Deploy' '## Common Use Cases' '## Dependencies for' '### Deployment Dependencies'; do
+  grep -Fq "${heading}" "${template_root}/MARKETPLACE.md"
+done
+publish_description="Authenticated Aegra backend with durable PostgreSQL and Redis."
+(( ${#publish_description} <= 75 ))
 
 POSTGRES_PASSWORD=verify-postgres REDIS_PASSWORD=verify-redis AEGRA_API_KEY=verify-aegra \
   docker compose -f "${template_root}/compose.yaml" config --quiet

@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.4] - 2026-08-01
+
+- Extended release verification to enforce marketplace metadata limits and exact stored deployment commands.
+
 ## [1.0.3] - 2026-08-01
 
 - Documented the complete managed Railway environment contract.
