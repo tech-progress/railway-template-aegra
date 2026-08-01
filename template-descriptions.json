@@ -1,0 +1,39 @@
+{
+  "Aegra PostgreSQL": {
+    "POSTGRES_DB": "Database used for Agent Protocol state, runs, leases, and checkpoints.",
+    "POSTGRES_PASSWORD": "Generated password for the private pgvector database.",
+    "POSTGRES_USER": "PostgreSQL role used by Aegra."
+  },
+  "Aegra Redis": {
+    "REDIS_PASSWORD": "Generated password for the private persistent Redis broker."
+  },
+  "Aegra": {
+    "AEGRA_CONFIG": "Absolute path to the graph and authentication configuration.",
+    "AEGRA_API_KEY": "Generated bearer token required by every protected Agent Protocol route.",
+    "AUTH_TYPE": "Loads the bundled constant-time bearer-token authenticator.",
+    "CRON_ENABLED": "Runs Aegra's persisted cron scheduler in this instance.",
+    "DB_ECHO_LOG": "Keeps SQL statement logging disabled in production.",
+    "DB_POOL_MAX_SIZE": "Maximum API database pool size.",
+    "DB_POOL_MIN_SIZE": "Minimum API database pool size.",
+    "DB_WORKER_POOL_MAX_SIZE": "Maximum worker database pool size.",
+    "DB_WORKER_POOL_MIN_SIZE": "Minimum worker database pool size.",
+    "DEBUG": "Disables debug behavior in production.",
+    "ENV_MODE": "Selects Aegra's production settings.",
+    "HOST": "Binds the HTTP server to every container interface.",
+    "LOG_LEVEL": "Application log threshold.",
+    "METRICS_ENABLED": "Keeps the metrics route disabled unless explicitly enabled.",
+    "OTEL_CONSOLE_ENABLED": "Disables console trace export.",
+    "OTEL_TARGETS": "Optional comma-separated observability targets; empty by default.",
+    "PORT": "HTTP port used by Railway routing and health checks.",
+    "POSTGRES_DB": "Reference to the Aegra database name.",
+    "POSTGRES_HOST": "Private Railway hostname of PostgreSQL.",
+    "POSTGRES_PASSWORD": "Password reference for PostgreSQL.",
+    "POSTGRES_PORT": "Private PostgreSQL port.",
+    "POSTGRES_USER": "Username reference for PostgreSQL.",
+    "REDIS_BROKER_ENABLED": "Uses Redis for queued workers and event streaming.",
+    "REDIS_JOBS_PER_WORKER": "Maximum concurrent jobs handled by each worker loop.",
+    "REDIS_URL": "Authenticated private Redis connection string.",
+    "REDIS_WORKER_COUNT": "Worker loops started inside the Aegra instance.",
+    "SERVER_URL": "Public Agent Protocol base URL."
+  }
+}

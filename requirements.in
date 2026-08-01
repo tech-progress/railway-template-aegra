@@ -1,0 +1,2 @@
+# Keep the server pinned to the independently verified upstream release.
+aegra-cli==0.9.24

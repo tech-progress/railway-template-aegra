@@ -1,0 +1,9 @@
+{
+  "dependencies": ["./src"],
+  "graphs": {
+    "echo": "./src/echo_agent/graph.py:graph"
+  },
+  "auth": {
+    "path": "./auth.py:auth"
+  }
+}

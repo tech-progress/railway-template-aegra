@@ -1,0 +1,39 @@
+{
+  "Aegra PostgreSQL": {
+    "POSTGRES_DB": "aegra",
+    "POSTGRES_PASSWORD": "${{secret(48)}}",
+    "POSTGRES_USER": "aegra"
+  },
+  "Aegra Redis": {
+    "REDIS_PASSWORD": "${{secret(48)}}"
+  },
+  "Aegra": {
+    "AEGRA_CONFIG": "/app/aegra.json",
+    "AEGRA_API_KEY": "${{secret(48)}}",
+    "AUTH_TYPE": "custom",
+    "CRON_ENABLED": "true",
+    "DB_ECHO_LOG": "false",
+    "DB_POOL_MAX_SIZE": "5",
+    "DB_POOL_MIN_SIZE": "5",
+    "DB_WORKER_POOL_MAX_SIZE": "10",
+    "DB_WORKER_POOL_MIN_SIZE": "2",
+    "DEBUG": "false",
+    "ENV_MODE": "PRODUCTION",
+    "HOST": "0.0.0.0",
+    "LOG_LEVEL": "INFO",
+    "METRICS_ENABLED": "false",
+    "OTEL_CONSOLE_ENABLED": "false",
+    "OTEL_TARGETS": "",
+    "PORT": "2026",
+    "POSTGRES_DB": "${{Aegra PostgreSQL.POSTGRES_DB}}",
+    "POSTGRES_HOST": "${{Aegra PostgreSQL.RAILWAY_PRIVATE_DOMAIN}}",
+    "POSTGRES_PASSWORD": "${{Aegra PostgreSQL.POSTGRES_PASSWORD}}",
+    "POSTGRES_PORT": "5432",
+    "POSTGRES_USER": "${{Aegra PostgreSQL.POSTGRES_USER}}",
+    "REDIS_BROKER_ENABLED": "true",
+    "REDIS_JOBS_PER_WORKER": "4",
+    "REDIS_URL": "redis://:${{Aegra Redis.REDIS_PASSWORD}}@${{Aegra Redis.RAILWAY_PRIVATE_DOMAIN}}:6379/0",
+    "REDIS_WORKER_COUNT": "2",
+    "SERVER_URL": "https://${{Aegra.RAILWAY_PUBLIC_DOMAIN}}"
+  }
+}
