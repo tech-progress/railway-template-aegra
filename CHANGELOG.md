@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.3] - 2026-08-01
+
+- Documented the complete managed Railway environment contract.
+- Moved the standalone distribution check into the self-contained template directory.
+
 ## [1.0.2] - 2026-08-01
 
 - Corrected Railway worker, database pool, metrics, and console-export variables to Aegra's exact supported setting names.

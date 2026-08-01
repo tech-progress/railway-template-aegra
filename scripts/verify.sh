@@ -7,7 +7,7 @@ required_files=(
   CHANGELOG.md Dockerfile LICENSE_REVIEW.md MARKETPLACE.md PUBLISHING.md
   README.md SUPPORT.md UPGRADE.md VERSION bun.lock compose.yaml package.json
   requirements.in requirements.lock scripts/audit-template.sh
-  scripts/restore-template-draft.sh scripts/smoke.sh scripts/verify.sh
+  scripts/check-standalone.sh scripts/restore-template-draft.sh scripts/smoke.sh scripts/verify.sh
   src/echo_agent/__init__.py src/echo_agent/graph.py template-defaults.json
   template-descriptions.json template-networking.json template-volumes.json
 )
