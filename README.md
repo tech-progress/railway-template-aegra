@@ -1,6 +1,6 @@
 # Aegra agent backend Railway template
 
-This template deploys [Aegra](https://github.com/aegra/aegra) `0.9.24` as an authenticated Agent Protocol backend with private pgvector/PostgreSQL and Redis services. The current template release is `v1.0.1`.
+This template deploys [Aegra](https://github.com/aegra/aegra) `0.9.24` as an authenticated Agent Protocol backend with private pgvector/PostgreSQL and Redis services. The current template release is `v1.0.2`.
 
 Aegra runs its HTTP API, Redis-backed worker loops, event broker, lease reaper, and cron scheduler in one service. PostgreSQL persists threads, runs, leases, and LangGraph checkpoints; Redis persists queued work and event transport. The bundled deterministic `echo` graph makes a fresh deployment immediately testable without an LLM credential, and its source is the starting point for your own graph.
 

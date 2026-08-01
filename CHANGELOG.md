@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.2] - 2026-08-01
+
+- Corrected Railway worker, database pool, metrics, and console-export variables to Aegra's exact supported setting names.
+
 ## [1.0.1] - 2026-08-01
 
 - Corrected headless draft restoration to update the marketplace display name through Composer settings.

@@ -39,8 +39,23 @@ jq -e '
   ([.[] | select(.name == "Aegra")][0].source.repo == "tech-progress/railway-template-aegra") and
   ([.[] | select(.name == "Aegra")][0].source.branch == "release-v1") and
   ([.[] | select(.name == "Aegra")][0].build.dockerfilePath == "Dockerfile") and
-  ([.[] | select(.name == "Aegra")][0].deploy.healthcheckPath == "/ready")
+  ([.[] | select(.name == "Aegra")][0].deploy.healthcheckPath == "/ready") and
+  ([.[] | select(.name == "Aegra")][0].variables |
+    .SQLALCHEMY_POOL_SIZE.value == "5" and
+    .SQLALCHEMY_MAX_OVERFLOW.value == "5" and
+    .LANGGRAPH_MIN_POOL_SIZE.value == "2" and
+    .LANGGRAPH_MAX_POOL_SIZE.value == "10" and
+    .WORKER_COUNT.value == "2" and
+    .N_JOBS_PER_WORKER.value == "4" and
+    .ENABLE_PROMETHEUS_METRICS.value == "false" and
+    .OTEL_CONSOLE_EXPORT.value == "false")
 ' <<<"${graph_json}" >/dev/null
+
+jq -e --slurpfile descriptions "${template_root}/template-descriptions.json" '
+  (to_entries | all(. as $service |
+    (.value | keys | sort) == ($descriptions[0][$service.key] | keys | sort))) and
+  ((.Aegra | [has("DB_POOL_MIN_SIZE"), has("REDIS_WORKER_COUNT"), has("METRICS_ENABLED")] | any) | not)
+' "${template_root}/template-defaults.json" >/dev/null
 
 grep -Fq 'aegra-cli==0.9.24' "${template_root}/requirements.lock"
 for pin in \
