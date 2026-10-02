@@ -1,6 +1,6 @@
 # Deploy and Host Aegra on Railway
 
-Deploy Aegra `0.9.24` as an authenticated, self-hosted Agent Protocol backend with durable PostgreSQL checkpoints and Redis-backed job execution. The template includes a working echo graph, generated bearer authentication, automatic database migrations, and crash recovery without requiring an LLM key.
+Deploy Aegra `0.10.8` as an authenticated, self-hosted Agent Protocol backend with durable PostgreSQL checkpoints and Redis-backed job execution. The template includes a working echo graph, generated bearer authentication, automatic database migrations, and crash recovery without requiring an LLM key.
 
 ## About Hosting Aegra
 
@@ -21,7 +21,7 @@ Railway supplies the public domain, private service discovery, generated secrets
 
 ### Deployment Dependencies
 
-- Aegra CLI and API `0.9.24`, installed from hash-locked official PyPI artifacts
+- Aegra CLI and API `0.10.8`, installed from hash-locked official PyPI artifacts
 - pgvector on PostgreSQL 18 with a persistent volume
 - Redis 8 with password authentication, AOF persistence, and a persistent volume
 - No external model credential for the included echo graph

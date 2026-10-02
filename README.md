@@ -1,10 +1,14 @@
 # Aegra agent backend Railway template
 
-This template deploys [Aegra](https://github.com/aegra/aegra) `0.9.24` as an authenticated Agent Protocol backend with private pgvector/PostgreSQL and Redis services. The current template release is `v1.0.4`.
+This template deploys [Aegra](https://github.com/aegra/aegra) `0.10.8` as an authenticated Agent Protocol backend with private pgvector/PostgreSQL and Redis services. The current template release is `v1.0.5`.
 
 Aegra runs its HTTP API, Redis-backed worker loops, event broker, lease reaper, and cron scheduler in one service. PostgreSQL persists threads, runs, leases, and LangGraph checkpoints; Redis persists queued work and event transport. The bundled deterministic `echo` graph makes a fresh deployment immediately testable without an LLM credential, and its source is the starting point for your own graph.
 
-Railway builds Aegra from the public `tech-progress/railway-template-aegra` repository on `release-v1`. The container installs official `aegra-cli==0.9.24` and transitive artifacts from a hash-locked file, runs as a non-root user, and starts through the upstream `aegra serve` production command.
+Railway builds Aegra from the public `tech-progress/railway-template-aegra` repository on `release-v1`. The container installs official `aegra-cli==0.10.8` and `aegra-api==0.10.8` with transitive artifacts from a hash-locked file, uses Python `3.12.15` on Debian Bookworm, runs as a non-root user, and starts through the upstream `aegra serve` production command.
+
+This maintenance release is prepared locally; publication and existing-deployment migration validation are separate gates. Read [UPGRADE.md](UPGRADE.md) before updating persisted threads or checkpoints.
+
+Local checks on 2026-10-02 passed: template verifier, Docker build with hash-enforced installation, clean PostgreSQL/Redis startup, bearer rejection/authenticated echo execution, same-version restart persistence, SSE execution with synchronous durability, checkpoint history, cooperative interrupt, and forced mid-run crash recovery. Registry index digests were checked with `docker buildx imagetools inspect` using temporary tooling. Upgrading existing 0.9 data, checkpoint replay, stream-disconnect pool cleanup, and Railway deployment/publication were not validated.
 
 ## Environment variables
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.5] - 2026-10-02
+
+- Update Aegra CLI/API to 0.10.8 and regenerate the Python 3.12 hash lock using the existing uv compile command.
+- Pin Python 3.12.15 Bookworm to its verified multi-architecture digest; retain PostgreSQL, Redis, bearer auth, and the echo graph.
+- Refresh version assertions and upgrade guidance for checkpoint selection, durability, run recovery, and streaming changes. Existing 0.9-state migration and cloud publication remain separate validation gates.
+
 ## [1.0.4] - 2026-08-01
 
 - Extended release verification to enforce marketplace metadata limits and exact stored deployment commands.

@@ -62,9 +62,13 @@ jq -e --slurpfile descriptions "${template_root}/template-descriptions.json" '
   ((.Aegra | [has("DB_POOL_MIN_SIZE"), has("REDIS_WORKER_COUNT"), has("METRICS_ENABLED")] | any) | not)
 ' "${template_root}/template-defaults.json" >/dev/null
 
-grep -Fq 'aegra-cli==0.9.24' "${template_root}/requirements.lock"
+grep -Fxq 'aegra-cli==0.10.8' "${template_root}/requirements.in"
+for package in aegra-cli aegra-api; do
+  grep -Fq "${package}==0.10.8 \\" "${template_root}/requirements.lock"
+done
+grep -Fq 'FROM python:3.12.15-slim-bookworm@sha256:' "${template_root}/Dockerfile"
 for pin in \
-  d50fb7611f86d04a3b0471b46d7557818d88983fc3136726336b2a4c657aa30b \
+  54c85f3c47607a77f32adec749d3c81d1348bf25833671f512b26a9b6d778cb3 \
   691673308c99d2161ba298736f3147f1f22d79de2fb7ec93ae9b4afcab870b62 \
   e8eb6f2980c06c6a25c08f62cb2e00dc7d2fead9aa492cfdd8b54a42109ae0f2; do
   grep -Rqs "${pin}" "${template_root}/Dockerfile" "${template_root}/compose.yaml" "${template_root}/.railway/railway.ts"
